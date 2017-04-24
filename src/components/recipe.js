@@ -4,12 +4,20 @@ import {Height} from 'react-height';
 import {Collapse} from 'react-collapse';
 
 class Recipe extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isOpened: false
     };
   }
+
+
+  handleDelete(event, index) {
+    this.props.deleteRecipe(event, index);
+    this.setState ({ recipes: recipes })
+  }
+
+ 
     
   render() {
     const {
@@ -25,12 +33,14 @@ class Recipe extends Component {
 
         <Collapse isOpened={isOpened}>
           <div>
-            <p>{this.props.ind}</p>
             <ul>
             {this.props.ingredients.map(function(el){
                 return (<li>{el}</li>)
               })}
             </ul>
+            <button className="btn btn-danger" 
+              id={this.props.index}
+              onClick={this.handleDelete.bind(this, this.props.index)}>Delete</button>
           </div>
         </Collapse>
       </div>

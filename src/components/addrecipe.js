@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Modal from './modal';
 
+var localStorageKey = "_ssheilah_recipes";
+
 class AddRecipe extends Component {
     constructor(props) {
       super(props)
       this.state = { 
         isModalOpen: false,
-        ind: '',
         title: '',
         ingredients: ''
       };
@@ -20,20 +21,23 @@ class AddRecipe extends Component {
       const value = target.value;
       const name = target.name;
       
-      
       this.setState({
         [name]: value
       });
     }
-   
-    
+
+
+
     handleSubmit(event) {
-      console.log('title: ' + this.state.title);
-      console.log('ingredients: ' + this.state.ingredients)
+      var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(' ', '').trim().split(",")};
+      var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
+      arrayR.push(newRecipe);
+      localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
+      this.setState({ recipes : recipes });
       this.closeModal();
       event.preventDefault();
     }  
-    
+
 
     render() {
       return (
@@ -41,7 +45,7 @@ class AddRecipe extends Component {
           <button onClick={() => this.openModal()}>Add Recipe</button>
           <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
             
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit.bind(this)}>
               <label>
                  Title:</label>
                 <input 

@@ -13,31 +13,49 @@ class App extends Component {
   constructor() {
     super();
     
-    var recipes = [
-      {ind: 0, title: 'quiche', ingredients: ['eggs', 'cheese', 'crust']},
-      {ind: 1, title: 'salad', ingredients: ['lettuce', 'pears', 'poppyseed dressing']},
-      {ind: 2, title: 'danish', ingredients: ['pastry', 'cream cheese', 'apricot jam']}
-
+    const recipes = JSON.parse(localStorage.getItem(localStorageKey)) || [
+      {title: 'quiche', ingredients: ['eggs', 'cheese', 'crust']},
+      {title: 'salad', ingredients: ['lettuce', 'pears', 'poppyseed dressing']},
+      {title: 'danish', ingredients: ['pastry', 'cream cheese', 'apricot jam']}
   ];
-    
+
+
     this.state = {
       isOpened: false,
-      recipes: recipes
-    };
+      recipes: recipes,
+    }
+  };
+
+  componentDidMount() { 
+     localStorage.setItem(localStorageKey, JSON.stringify(this.state.recipes));
+    
   }
+
+
+  deleteThisRecipe(index) {
+    var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
+    this.setState({ recipes: this.state.recipes.filter((_, i) => i !== index) });
+    arrayR.splice(index, 1);
+    localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
+  }
+
+
  
 
+ 
   render() {
    const {
       isOpened
     } = this.state;
+
     
     var recipeElements = [];
     for (var i = 0; i < this.state.recipes.length; i++) {
       recipeElements.push(
-        <Recipe ind={this.state.recipes[i].ind} 
-          title={this.state.recipes[i].title}
-          ingredients={this.state.recipes[i].ingredients} index={i} 
+        <Recipe title={this.state.recipes[i].title}
+          ingredients={this.state.recipes[i].ingredients} 
+          index={i}
+          deleteRecipe={this.deleteThisRecipe.bind(this)}
           />);
     }
 
