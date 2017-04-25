@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state = {
       isOpened: false,
-      recipes: recipes,
+      recipes: recipes
     }
   };
 
@@ -40,9 +40,7 @@ class App extends Component {
   }
 
 
- 
 
- 
   render() {
    const {
       isOpened
