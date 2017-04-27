@@ -42,28 +42,29 @@ class AddRecipe extends Component {
     render() {
       return (
         <div>
-          <button onClick={() => this.openModal()}>Add Recipe</button>
+          <button onClick={() => this.openModal()}>Add New Recipe</button>
           <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
             
             <form onSubmit={this.handleSubmit.bind(this)}>
               <label>
-                 Title:</label>
+                 Recipe Title:</label>
                 <input 
                   name="title" 
                   type="text" 
                   value={this.state.title} 
                   onChange={this.handleChange} />
               
-              <br />
+              <br /><br />
               <label>
-                 Ingredients:</label>
+                 Recipe Ingredients:</label>
                 <input 
                   name="ingredients" 
                   type="text" 
+                  placeholder="ingredients, separated by commas"
                   value={this.state.ingredients} 
                   onChange={this.handleChange} />
               
-              <br />
+              <br /><br />
               <input type="submit" value="Submit" />
              </form>       
           </Modal>

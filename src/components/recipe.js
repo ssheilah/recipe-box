@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Motion, spring} from 'react-motion';
 import {Height} from 'react-height';
 import {Collapse} from 'react-collapse';
+import AddRecipe from './addrecipe';
+import EditRecipe from './editrecipe';
 
 
 class Recipe extends Component {
@@ -27,7 +29,7 @@ class Recipe extends Component {
 
     return (
     	<div>
-        <div>
+        <div className="eachrecipe">
             <button id="recipetitle" onClick={() => this.setState({isOpened: !isOpened})}>{this.props.title}</button>
         </div>
 
@@ -37,10 +39,14 @@ class Recipe extends Component {
             {this.props.ingredients.map(function(el){
                 return (<li>{el}</li>)
               })}
-            </ul>               
-           <button className="btn btn-danger" 
-              id={'delete' + this.props.index}
-              onClick={this.handleDelete.bind(this, this.props.index)}>Delete</button>
+            </ul>  
+            <EditRecipe 
+              index={this.props.index}
+              title={this.props.title}
+              ingredients={this.props.ingredients} 
+            />
+            <button 
+              onClick={this.handleDelete.bind(this, this.props.index)}>Delete Recipe</button>
           </div>
         </Collapse>
       </div>

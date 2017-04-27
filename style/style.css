@@ -8,3 +8,20 @@
 	margin: auto;
 	background-color: #fff;
 }
+
+input[type="text"] {
+    width: 100%;
+}
+
+input[type="submit"] {
+    float: right;
+}
+
+.eachrecipe {
+	margin: 5px;
+}
+
+button {
+	width: 130px;
+	margin-bottom: 5px;
+}

@@ -5,6 +5,7 @@ import {Height} from 'react-height';
 import {Collapse} from 'react-collapse';
 import Recipe from './components/recipe';
 import AddRecipe from './components/addrecipe';
+import EditRecipe from './components/editrecipe';
 import Modal from './components/modal';
 
 var localStorageKey = "_ssheilah_recipes";
@@ -40,7 +41,6 @@ class App extends Component {
   }
 
 
-
   render() {
    const {
       isOpened
@@ -59,8 +59,11 @@ class App extends Component {
 
     return (
       <div className="container">
+      <h2>Recipe Ingredients</h2>
         {recipeElements}
+        <hr />
         <AddRecipe />
+        
       </div>
     );
   }
