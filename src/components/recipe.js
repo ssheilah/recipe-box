@@ -5,6 +5,8 @@ import {Collapse} from 'react-collapse';
 import AddRecipe from './addrecipe';
 import EditRecipe from './editrecipe';
 
+var localStorageKey = "_ssheilah_recipes";
+
 
 class Recipe extends Component {
   constructor(props) {
@@ -14,30 +16,27 @@ class Recipe extends Component {
     };
   }
 
-
   handleDelete(event, index) {
     this.props.deleteRecipe(event, index);
     this.setState ({ recipes: recipes })
   }
-
     
   render() {
     const {
       isOpened
     } = this.state;
     
-
     return (
     	<div>
         <div className="eachrecipe">
-            <button id="recipetitle" onClick={() => this.setState({isOpened: !isOpened})}>{this.props.title}</button>
+            <button onClick={() => this.setState({isOpened: !isOpened})}>{this.props.title}</button>
         </div>
 
         <Collapse isOpened={isOpened}>
           <div>
             <ul>
             {this.props.ingredients.map(function(el){
-                return (<li>{el}</li>)
+                return (<li key={el}>{el}</li>)
               })}
             </ul>  
             <EditRecipe 

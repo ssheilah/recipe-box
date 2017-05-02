@@ -9,6 +9,8 @@ class EditRecipe extends Component {
       super(props)
       this.state = { 
         isModalOpen: false,
+        title: '',
+        ingredients: []
       };
       
       this.handleChange = this.handleChange.bind(this);
@@ -16,7 +18,6 @@ class EditRecipe extends Component {
     }
 
     // set the default values when edit modal is opened
-
     // when the component is loaded the first time
    componentWillMount() { 
      if (this.props.recipe) this.setDefaultState(this.props.recipe);
@@ -24,17 +25,7 @@ class EditRecipe extends Component {
 
     // when the component is reloaded
     componentWillReceiveProps(nextProps) {
-      this.setDefaultState(nextProps);
-    }
-
-    // prefill the input fields with available data by setting default state
-
-    setDefaultState(recipe) {
-      this.setState({
-        index: this.props.index,
-        title: this.props.title,
-        ingredients: this.props.ingredients
-      })
+      this.setState(nextProps);
     }
     
     handleChange(event) {
@@ -50,27 +41,30 @@ class EditRecipe extends Component {
 
     handleSubmit(event) {
 
+      var ingredients = this.state.ingredients.toString();
+
       this.setState({
         index: this.props.index,
         title: this.state.title,
         ingredients: this.state.ingredients
-      });
+        }
+      );
 
 
-      var newVersion = {title: this.state.title.toUpperCase(), ingredients: this.state.ingredients.replace(' ', '').trim().split(",")};
+     var newVersion = {title: this.state.title, ingredients: ingredients.replace(/\s/g, '').trim().split(",")};
 
       // delete old version
       var arrayR = [];
       arrayR = JSON.parse(localStorage.getItem(localStorageKey));
       arrayR.splice(this.state.index, 1);
 
-
       // add new version
       arrayR.splice(this.state.index, 0, newVersion);
-      localStorage.setItem(localStorageKey, JSON.stringify(arrayR))
+      localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
+
       this.setState({ 
-        recipes : arrayR,
-        recipes : recipes
+      recipes : arrayR,
+      recipes : recipes
       });
 
       this.closeModal();
@@ -92,19 +86,15 @@ class EditRecipe extends Component {
                   type="text" 
                   value={this.state.title}
                   onChange={this.handleChange} />
-              
-              <br />
-              <label>
+              <br />              <label>
                  Recipe Ingredients</label>
                 <input 
                   name="ingredients" 
                   type="text" 
                   value={this.state.ingredients}
                   onChange={this.handleChange} />
-              
               <br />
               <input type="submit" value="Submit" />
-              <button onClick={this.closeModal}>Cancel</ button>
              </form>       
           </Modal>
         </div>
@@ -118,7 +108,6 @@ class EditRecipe extends Component {
     closeModal() {
       this.setState({ isModalOpen: false })
     }
-
   }
 
   export default EditRecipe;

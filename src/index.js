@@ -16,10 +16,9 @@ class App extends Component {
     
     const recipes = JSON.parse(localStorage.getItem(localStorageKey)) || [
       {title: 'quiche', ingredients: ['eggs', 'cheese', 'crust']},
-      {title: 'salad', ingredients: ['lettuce', 'pears', 'poppyseed dressing']},
-      {title: 'danish', ingredients: ['pastry', 'cream cheese', 'apricot jam']}
+      {title: 'salad', ingredients: ['lettuce', 'pears', 'poppyseeds']},
+      {title: 'danish', ingredients: ['pastry', 'cheese', 'jam']}
   ];
-
 
     this.state = {
       isOpened: false,
@@ -29,9 +28,7 @@ class App extends Component {
 
   componentDidMount() { 
      localStorage.setItem(localStorageKey, JSON.stringify(this.state.recipes));
-    
   }
-
 
   deleteThisRecipe(index) {
     var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
@@ -39,7 +36,6 @@ class App extends Component {
     arrayR.splice(index, 1);
     localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
   }
-
 
   render() {
    const {
@@ -50,7 +46,8 @@ class App extends Component {
     var recipeElements = [];
     for (var i = 0; i < this.state.recipes.length; i++) {
       recipeElements.push(
-        <Recipe title={this.state.recipes[i].title}
+        <Recipe key={i}
+          title={this.state.recipes[i].title}
           ingredients={this.state.recipes[i].ingredients} 
           index={i}
           deleteRecipe={this.deleteThisRecipe.bind(this)}
