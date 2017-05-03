@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
-
-.container {
-	font-family: 'Open Sans', sans-serif;;
-	width: 800px;
+.wrapper {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #77580c;
+	width: 350px;
 	margin: auto;
 	background-color: #fff;
+}
+
+h2 {
+	color: #77580c;
+	margin-top: 15px;
 }
 
 input[type="text"] {
@@ -19,9 +25,23 @@ input[type="submit"] {
 
 .eachrecipe {
 	margin: 5px;
+	padding: 15px;
+	background-color: #f1e4c4;
 }
 
 button {
 	width: 130px;
-	margin-bottom: 5px;
+	margin: 2px;
+}
+
+.titlebtn {
+	font-size: 1.25rem;
+}
+
+.editbtn {
+	float: right;
+}
+
+.addbtn {
+	width: 150px;
 }

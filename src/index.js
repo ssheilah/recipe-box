@@ -15,9 +15,9 @@ class App extends Component {
     super();
     
     const recipes = JSON.parse(localStorage.getItem(localStorageKey)) || [
-      {title: 'quiche', ingredients: ['eggs', 'cheese', 'crust']},
-      {title: 'salad', ingredients: ['lettuce', 'pears', 'poppyseeds']},
-      {title: 'danish', ingredients: ['pastry', 'cheese', 'jam']}
+      {title: 'Quiche', ingredients: ['eggs', 'cheese', 'crust']},
+      {title: 'Salad', ingredients: ['lettuce', 'pears', 'poppyseeds']},
+      {title: 'Danish Puffs', ingredients: ['pastry', 'cheese', 'jam']}
   ];
 
     this.state = {
@@ -37,7 +37,7 @@ class App extends Component {
     localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
   }
 
-  render() {
+ render() {
    const {
       isOpened
     } = this.state;
@@ -55,8 +55,9 @@ class App extends Component {
     }
 
     return (
-      <div className="container">
-      <h2>Recipe Ingredients</h2>
+      <div className="wrapper">
+        <h2>Recipe Ingredients</h2>
+        <hr />
         {recipeElements}
         <hr />
         <AddRecipe />

@@ -29,11 +29,15 @@ class AddRecipe extends Component {
 
 
     handleSubmit(event) {
-      var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(/\s/g, '').trim().split(",")};
+      var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(' ', '').trim().split(",")};
       var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
       arrayR.push(newRecipe);
       localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
-      this.setState({ recipes : recipes });
+
+      this.setState({ 
+        recipes: recipes
+      });
+
       this.closeModal();
       event.preventDefault();
     }  
@@ -42,7 +46,7 @@ class AddRecipe extends Component {
     render() {
       return (
         <div>
-          <button onClick={() => this.openModal()}>Add New Recipe</button>
+          <button className="addbtn" onClick={() => this.openModal()}>Add New Recipe</button>
           <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
             
             <form onSubmit={this.handleSubmit.bind(this)}>

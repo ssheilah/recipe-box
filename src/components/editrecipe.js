@@ -20,7 +20,7 @@ class EditRecipe extends Component {
     // set the default values when edit modal is opened
     // when the component is loaded the first time
    componentWillMount() { 
-     if (this.props.recipe) this.setDefaultState(this.props.recipe);
+     if (this.props.recipe) this.setState(this.props.recipe);
     }
 
     // when the component is reloaded
@@ -63,8 +63,7 @@ class EditRecipe extends Component {
       localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
 
       this.setState({ 
-      recipes : arrayR,
-      recipes : recipes
+      recipes: recipes
       });
 
       this.closeModal();
@@ -75,7 +74,7 @@ class EditRecipe extends Component {
     render() {
       return (
         <div>
-        <button onClick={() => this.openModal()}>Edit Recipe</button>
+        <button  className="editbtn" onClick={() => this.openModal()}>Edit Recipe</button>
           <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
             
             <form onSubmit={this.handleSubmit.bind(this)}>
@@ -86,8 +85,8 @@ class EditRecipe extends Component {
                   type="text" 
                   value={this.state.title}
                   onChange={this.handleChange} />
-              <br />              <label>
-                 Recipe Ingredients</label>
+              <br />              
+              <label>Recipe Ingredients</label>
                 <input 
                   name="ingredients" 
                   type="text" 

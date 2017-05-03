@@ -18,7 +18,7 @@ class Recipe extends Component {
 
   handleDelete(event, index) {
     this.props.deleteRecipe(event, index);
-    this.setState ({ recipes: recipes })
+    this.setState ({ recipes: this.state.recipes })
   }
     
   render() {
@@ -27,9 +27,9 @@ class Recipe extends Component {
     } = this.state;
     
     return (
-    	<div>
-        <div className="eachrecipe">
-            <button onClick={() => this.setState({isOpened: !isOpened})}>{this.props.title}</button>
+    	<div className="eachrecipe">
+        <div>
+            <button className="titlebtn" onClick={() => this.setState({isOpened: !isOpened})}>{this.props.title}</button>
         </div>
 
         <Collapse isOpened={isOpened}>
