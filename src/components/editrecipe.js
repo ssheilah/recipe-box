@@ -51,7 +51,7 @@ class EditRecipe extends Component {
       );
 
 
-     var newVersion = {title: this.state.title, ingredients: ingredients.replace(/\s/g, '').trim().split(",")};
+     var newVersion = {title: this.state.title, ingredients: ingredients.replace(/\[,\s]/g, '').trim().split(",")};
 
       // delete old version
       var arrayR = [];

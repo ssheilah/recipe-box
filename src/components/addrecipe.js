@@ -29,7 +29,7 @@ class AddRecipe extends Component {
 
 
     handleSubmit(event) {
-      var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(' ', '').trim().split(",")};
+      var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(/\[,\s]/g, '').trim().split(",")};
       var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
       arrayR.push(newRecipe);
       localStorage.setItem(localStorageKey, JSON.stringify(arrayR));

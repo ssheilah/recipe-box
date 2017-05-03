@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Motion, spring} from 'react-motion';
-import {Height} from 'react-height';
-import {Collapse} from 'react-collapse';
+//import {Motion, spring} from 'react-motion';
+//import {Height} from 'react-height';
+//import {Collapse} from 'react-collapse';
 import Recipe from './components/recipe';
 import AddRecipe from './components/addrecipe';
 import EditRecipe from './components/editrecipe';
