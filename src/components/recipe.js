@@ -44,7 +44,7 @@ class Recipe extends Component {
               title={this.props.title}
               ingredients={this.props.ingredients} 
             />
-            <button 
+            <button className="deletebtn"
               onClick={this.handleDelete.bind(this, this.props.index)}>Delete Recipe</button>
           </div>
         </Collapse>
