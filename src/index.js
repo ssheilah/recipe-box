@@ -11,8 +11,8 @@ import Modal from './components/modal';
 var localStorageKey = "_ssheilah_recipes";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     const recipes = JSON.parse(localStorage.getItem(localStorageKey)) || [
       {title: 'Quiche', ingredients: ['eggs', 'cheese', 'crust']},

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './modal';
-import Recipe from './recipe';
+//import Recipe from './recipe';
 
 var localStorageKey = "_ssheilah_recipes";
 
@@ -9,8 +9,6 @@ class EditRecipe extends Component {
       super(props)
       this.state = { 
         isModalOpen: false,
-        title: '',
-        ingredients: []
       };
       
       this.handleChange = this.handleChange.bind(this);
@@ -50,7 +48,6 @@ class EditRecipe extends Component {
         }
       );
 
-
      var newVersion = {title: this.state.title, ingredients: ingredients.replace(/\[,\s]/g, '').trim().split(",")};
 
       // delete old version
@@ -61,6 +58,7 @@ class EditRecipe extends Component {
       // add new version
       arrayR.splice(this.state.index, 0, newVersion);
       localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
+
 
       this.setState({ 
       recipes: recipes

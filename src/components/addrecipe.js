@@ -8,8 +8,6 @@ class AddRecipe extends Component {
       super(props)
       this.state = { 
         isModalOpen: false,
-        title: '',
-        ingredients: ''
       };
       
       this.handleChange = this.handleChange.bind(this);
@@ -27,11 +25,13 @@ class AddRecipe extends Component {
     }
 
 
-
     handleSubmit(event) {
+      const newS = this.state;
+
       var newRecipe = {title: this.state.title, ingredients: this.state.ingredients.replace(/\[,\s]/g, '').trim().split(",")};
       var arrayR = JSON.parse(localStorage.getItem(localStorageKey));
       arrayR.push(newRecipe);
+      this.setState(newS);      
       localStorage.setItem(localStorageKey, JSON.stringify(arrayR));
 
       this.setState({ 
@@ -40,6 +40,7 @@ class AddRecipe extends Component {
 
       this.closeModal();
       event.preventDefault();
+
     }  
 
 
